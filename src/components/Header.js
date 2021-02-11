@@ -1,4 +1,5 @@
-const Header = () => {
+const Header = (props) => {
+  const { search, onInputChange } = props;
   return (
     <div className="jumbotron text-center">
       <h1 className="display-1">
@@ -9,6 +10,8 @@ const Header = () => {
           type="text"
           className="form-control"
           placeholder="Search Your Recipe..."
+          value={search}
+          onChange={onInputChange}
         />
         <button className="btn btn-dark">Search Recipe</button>
       </div>
