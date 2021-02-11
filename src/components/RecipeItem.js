@@ -4,7 +4,7 @@ const RecipeItem = (props) => {
     <div className="card py-2 mt-5 mb-1 text-center">
       <img
         src={image}
-        alt={`${label} Image`}
+        alt={`${label}`}
         className="img-fluid w-50 mx-auto rounded-circle"
       />
       <div className="card-body">
