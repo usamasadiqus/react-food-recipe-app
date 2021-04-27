@@ -1,7 +1,7 @@
 const Header = (props) => {
-  const { search, onInputChange } = props;
+  const { search, onInputChange, onSearchClick } = props;
   return (
-    <div className="jumbotron text-center">
+    <div className="jumbotron">
       <h1 className="display-1">
         <span className="material-icons brand-icon">fastfood</span> Food Recipe
       </h1>
@@ -13,7 +13,11 @@ const Header = (props) => {
           value={search}
           onChange={onInputChange}
         />
-        <button className="btn btn-dark">Search Recipe</button>
+        <div className="input-group-append">
+          <button className="btn btn-dark" onClick={onSearchClick}>
+            Search Recipe
+          </button>
+        </div>
       </div>
     </div>
   );

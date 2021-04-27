@@ -1,39 +1,44 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Recipes from "./components/Recipes";
-import axios from "axios";
+import Axios from "axios";
 import "./App.css";
 
-function App() {
-  const [search, setSearch] = useState("Spaghetti");
+const App = () => {
+  const [search, setSearch] = useState("chicken");
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
-    loadData();
+    getRecipes();
   }, []);
 
-  const APP_ID = "711a367b";
-  const APP_KEY = "5faba9ed0d7ccb4ccc27682d253f83a6";
-
-  const loadData = async () => {
-    const { data } = await axios.get(
-      `https://api.edamam.com/search?q=${search}&app_id=${APP_ID}&app_key=${APP_KEY}`
+  const getRecipes = async () => {
+    const res = await Axios.get(
+      `https://api.edamam.com/search?q=${search}&app_id=${process.env.REACT_APP_FOOD_RECIPE_ID}&app_key=${process.env.REACT_APP_FOOD_RECIPE_API_KEY}`
     );
-    setRecipes(data.hits);
+    setRecipes(res.data.hits);
   };
 
   const onInputChange = (e) => {
     setSearch(e.target.value);
   };
 
+  const onSearchClick = () => {
+    getRecipes();
+  };
+
   return (
     <div>
-      <Header search={search} onInputChange={onInputChange} />
+      <Header
+        search={search}
+        onInputChange={onInputChange}
+        onSearchClick={onSearchClick}
+      />
       <div className="container">
         <Recipes recipes={recipes} />
       </div>
     </div>
   );
-}
+};
 
 export default App;

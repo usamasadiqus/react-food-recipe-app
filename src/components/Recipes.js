@@ -4,10 +4,9 @@ const Recipes = (props) => {
   const { recipes } = props;
   return (
     <div className="card-columns">
-      {recipes.map((recipe, index) => (
+      {recipes.map((recipe) => (
         <RecipeItem
-          key={index}
-          label={recipe.recipe.label}
+          name={recipe.recipe.label}
           image={recipe.recipe.image}
           ingredientLines={recipe.recipe.ingredientLines}
         />
